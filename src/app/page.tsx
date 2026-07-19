@@ -7,6 +7,8 @@ import HeroBackground from "@/components/HeroBackground";
 import StatsStrip from "@/components/StatsStrip";
 import { HeroReveal, HeroRevealItem } from "@/components/motion/HeroReveal";
 import Reveal, { RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import SplitText from "@/components/motion/SplitText";
+import ScrollIndicator from "@/components/motion/ScrollIndicator";
 import PixelAccent from "@/components/PixelAccent";
 import { GlobeIcon, PhoneIcon, BookIcon, CheckIcon } from "@/components/icons";
 
@@ -78,9 +80,13 @@ export default function Home() {
                 </p>
               </HeroRevealItem>
               <HeroRevealItem className="mt-4">
-                <h1 className="text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-                  Digital work that moves your business forward
-                </h1>
+                <SplitText
+                  as="h1"
+                  text="Digital work that moves your business forward"
+                  className="text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
+                  delay={0.3}
+                  stagger={0.012}
+                />
               </HeroRevealItem>
               <HeroRevealItem className="mt-6">
                 <p className="max-w-xl text-lg leading-8 text-white/75">
@@ -102,6 +108,7 @@ export default function Home() {
             </div>
           </HeroReveal>
         </div>
+        <ScrollIndicator />
       </section>
 
       <Section id="services" className="overflow-hidden bg-mist">
