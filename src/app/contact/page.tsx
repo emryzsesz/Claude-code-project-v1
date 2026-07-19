@@ -28,10 +28,19 @@ export default function ContactPage() {
             <div>
               <p className="font-semibold text-navy">Email</p>
               <a
-                href="mailto:hello@emryzdigital.com"
+                href="mailto:emryzdigital@gmail.com"
                 className="text-green hover:text-green-dark"
               >
-                hello@emryzdigital.com
+                emryzdigital@gmail.com
+              </a>
+            </div>
+            <div>
+              <p className="font-semibold text-navy">Phone</p>
+              <a
+                href="tel:+2348165993286"
+                className="text-green hover:text-green-dark"
+              >
+                +234 816 599 3286
               </a>
             </div>
             <div>

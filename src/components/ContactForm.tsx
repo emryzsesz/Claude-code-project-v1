@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from "react";
 
-const CONTACT_EMAIL = "hello@emryzdigital.com";
+const CONTACT_EMAIL = "emryzdigital@gmail.com";
 
 const SERVICE_OPTIONS = [
   "Web Design or Redesign",

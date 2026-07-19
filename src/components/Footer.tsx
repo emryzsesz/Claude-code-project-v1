@@ -63,8 +63,13 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <a href="mailto:hello@emryzdigital.com" className="hover:text-green">
-                hello@emryzdigital.com
+              <a href="mailto:emryzdigital@gmail.com" className="hover:text-green">
+                emryzdigital@gmail.com
+              </a>
+            </li>
+            <li>
+              <a href="tel:+2348165993286" className="hover:text-green">
+                +234 816 599 3286
               </a>
             </li>
           </ul>
