@@ -1,5 +1,4 @@
 export const PORTFOLIO_CATEGORIES = [
-  "All",
   "Wix",
   "Squarespace",
   "POS",
@@ -11,14 +10,14 @@ export type PortfolioCategory = (typeof PORTFOLIO_CATEGORIES)[number];
 export type PortfolioProject = {
   id: string;
   title: string;
-  category: Exclude<PortfolioCategory, "All">;
+  category: PortfolioCategory;
   summary: string;
 };
 
 /**
  * Placeholder entries. Every title and summary below is a stand in, swap
  * each one for a real project once Emryz Digital has case studies ready
- * to publish. The PLACEHOLDER badge on each card in PortfolioGrid makes
+ * to publish. The PLACEHOLDER badge on each card in PortfolioScroll makes
  * this obvious to site visitors as well, not just in this file.
  */
 export const PORTFOLIO_PROJECTS: PortfolioProject[] = [

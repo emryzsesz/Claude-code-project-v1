@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Section from "@/components/Section";
 import CTASection from "@/components/CTASection";
-import PortfolioGrid from "@/components/PortfolioGrid";
+import PortfolioScroll from "@/components/PortfolioScroll";
 import PixelAccent from "@/components/PixelAccent";
 import { HeroReveal, HeroRevealItem } from "@/components/motion/HeroReveal";
 
@@ -30,17 +30,17 @@ export default function PortfolioPage() {
             </HeroRevealItem>
             <HeroRevealItem className="mt-6">
               <p className="text-lg leading-8 text-navy/70">
-                Filter by category to see the kind of work we do in each
-                area. The entries below are placeholders, marked clearly,
-                ready to be swapped for real projects as they launch.
+                Scroll to move through work in each area. The entries below
+                are placeholders, marked clearly, ready to be swapped for
+                real projects as they launch.
               </p>
             </HeroRevealItem>
           </div>
         </HeroReveal>
       </Section>
 
-      <Section>
-        <PortfolioGrid />
+      <Section containerClassName="max-w-none px-0 sm:px-0">
+        <PortfolioScroll />
       </Section>
 
       <CTASection

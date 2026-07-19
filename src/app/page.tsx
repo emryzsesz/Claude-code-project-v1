@@ -1,40 +1,58 @@
 import Button from "@/components/Button";
 import Section from "@/components/Section";
-import ServiceCard from "@/components/ServiceCard";
 import ProcessSteps from "@/components/ProcessSteps";
 import CTASection from "@/components/CTASection";
 import HeroBackground from "@/components/HeroBackground";
+import ServiceVideoSection from "@/components/ServiceVideoSection";
+import MarqueeStrip from "@/components/MarqueeStrip";
 import StatsStrip from "@/components/StatsStrip";
 import { HeroReveal, HeroRevealItem } from "@/components/motion/HeroReveal";
 import Reveal, { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import SplitText from "@/components/motion/SplitText";
 import ScrollIndicator from "@/components/motion/ScrollIndicator";
+import SectionReveal, {
+  SectionTransitionStyle,
+} from "@/components/motion/SectionReveal";
 import PixelAccent from "@/components/PixelAccent";
-import { GlobeIcon, PhoneIcon, BookIcon, CheckIcon } from "@/components/icons";
+import { CheckIcon } from "@/components/icons";
 
 const services = [
   {
     href: "/services/web-design",
-    icon: GlobeIcon,
-    title: "Web Design and Redesign",
+    icon: "globe" as const,
+    eyebrow: "Web Design and Redesign",
+    title: "Websites built on Wix and Squarespace",
     description:
       "We design new websites and rebuild tired ones on Wix and Squarespace. Clean layouts, clear messaging, and pages built to turn visitors into customers.",
+    ctaLabel: "Explore Web Design",
+    videoSrc: "/video/web-design.mp4",
+    posterSrc: "/video/web-design-poster.jpg",
   },
   {
     href: "/services/pos-solutions",
-    icon: PhoneIcon,
-    title: "POS Solutions",
+    icon: "phone" as const,
+    eyebrow: "POS Solutions",
+    title: "Front counters that run on Toast and Square",
     description:
       "We set up and configure Toast and Square so your front counter runs smoothly. Menus, catalogs, staff training, and reporting, all handled for you.",
+    ctaLabel: "Explore POS Solutions",
+    videoSrc: "/video/pos.mp4",
+    posterSrc: "/video/pos-poster.jpg",
   },
   {
     href: "/services/author-growth",
-    icon: BookIcon,
-    title: "Author Growth",
+    icon: "book" as const,
+    eyebrow: "Author Growth",
+    title: "Readers found for authors who write books",
     description:
       "We help authors build an audience and sell more books. Author websites, launch campaigns, and a promotion plan built around your writing career.",
+    ctaLabel: "Explore Author Growth",
+    videoSrc: "/video/author-growth.mp4",
+    posterSrc: "/video/author-growth-poster.jpg",
   },
 ];
+
+const transitionStyles: SectionTransitionStyle[] = ["wipe", "radial", "curtain"];
 
 const reasons = [
   "Platform specialists, not generalists. We focus on Wix, Squarespace, Toast, and Square, so we know every setting and every workaround.",
@@ -111,27 +129,25 @@ export default function Home() {
         <ScrollIndicator />
       </section>
 
-      <Section id="services" className="overflow-hidden bg-mist">
-        <PixelAccent corner="top-right" />
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-semibold tracking-tight text-navy sm:text-4xl">
-            Three ways we help you grow
-          </h2>
-          <p className="mt-4 text-base leading-7 text-navy/70">
-            Every business is different, so we focus on a short list of
-            platforms we know inside and out, instead of trying to do
-            everything for everyone.
-          </p>
-        </Reveal>
+      <MarqueeStrip />
 
-        <RevealGroup className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => (
-            <RevealItem key={service.href}>
-              <ServiceCard {...service} />
-            </RevealItem>
-          ))}
-        </RevealGroup>
-      </Section>
+      <div id="services">
+        {services.map((service, i) => (
+          <SectionReveal key={service.href} style={transitionStyles[i % 3]}>
+            <ServiceVideoSection
+              eyebrow={service.eyebrow}
+              title={service.title}
+              description={service.description}
+              href={service.href}
+              ctaLabel={service.ctaLabel}
+              icon={service.icon}
+              videoSrc={service.videoSrc}
+              posterSrc={service.posterSrc}
+              align={i % 2 === 1 ? "right" : "left"}
+            />
+          </SectionReveal>
+        ))}
+      </div>
 
       <Section className="bg-navy">
         <StatsStrip />
