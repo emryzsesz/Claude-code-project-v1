@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import Container from "./Container";
+import LogoMark from "./LogoMark";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -9,13 +9,10 @@ export default function Footer() {
     <footer className="border-t border-border-soft bg-navy-tint">
       <Container className="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-2">
-          <Image
-            src="/brand/emryz-digital-logo-lockup.webp"
-            alt="Emryz Digital, websites, POS solutions, growth"
-            width={1536}
-            height={1024}
-            className="h-20 w-auto"
-          />
+          <div className="flex items-center gap-3">
+            <LogoMark className="h-12 w-auto" />
+            <span className="text-xl font-semibold text-navy">Emryz Digital</span>
+          </div>
           <p className="mt-4 max-w-sm text-sm leading-6 text-navy/70">
             Emryz Digital helps small businesses and independent authors grow
             online. We build websites on Wix and Squarespace, set up POS

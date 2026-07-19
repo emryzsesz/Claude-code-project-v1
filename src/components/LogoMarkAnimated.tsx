@@ -1,6 +1,3 @@
-"use client";
-
-import { motion, Variants } from "framer-motion";
 import {
   LOGO_VIEWBOX,
   LOGO_NAVY_POLYGONS,
@@ -14,31 +11,15 @@ const LIME = "#769a38";
 
 const squareFill = { green: GREEN, lime: LIME } as const;
 
-const EASE = [0.16, 1, 0.3, 1] as const;
-
-const markVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.94 },
-  show: { opacity: 1, scale: 1, transition: { duration: 0.45, ease: EASE } },
-};
-
-const squareVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.4 },
-  show: (i: number) => ({
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.3, ease: EASE, delay: 0.4 + i * 0.09 },
-  }),
-};
-
 /**
- * The header logo. On mount, the navy and green mark settles in first,
- * then the four pixel squares fade in one after another. MotionProvider
- * mutes that entrance globally for reduced motion users, so this
- * component always renders the same motion.svg structure rather than
- * branching on useReducedMotion itself, which would otherwise risk a
- * hydration mismatch. On hover, the green shape brightens through a
- * layered opacity overlay driven by a plain CSS transition, not framer
- * motion, so it is unaffected either way.
+ * The header logo. Plain server rendered SVG, no "use client" boundary,
+ * so the mark is fully present and visible in the initial HTML and works
+ * with JavaScript disabled. The entrance (mark settles, then the four
+ * pixel squares fade in one after another) and the hover brighten on the
+ * green shape are both driven by plain CSS, defined in globals.css,
+ * rather than framer motion, which previously left the mark stuck at
+ * opacity 0 in the server render until the animation library hydrated
+ * and took over.
  */
 export default function LogoMarkAnimated({
   className,
@@ -46,16 +27,13 @@ export default function LogoMarkAnimated({
   className?: string;
 }) {
   return (
-    <motion.svg
+    <svg
       viewBox={LOGO_VIEWBOX}
       role="img"
       aria-label="Emryz Digital"
       className={`group/logo ${className ?? ""}`}
-      initial="hidden"
-      animate="show"
-      variants={markVariants}
     >
-      <g>
+      <g className="logo-settle">
         {LOGO_NAVY_POLYGONS.map((points) => (
           <polygon key={points} points={points} fill={NAVY} />
         ))}
@@ -67,18 +45,17 @@ export default function LogoMarkAnimated({
         />
       </g>
       {LOGO_SQUARES.map((square, i) => (
-        <motion.rect
+        <rect
           key={square.id}
           x={square.x}
           y={square.y}
           width={square.size}
           height={square.size}
           fill={squareFill[square.color]}
-          custom={i}
-          variants={squareVariants}
-          style={{ transformOrigin: "center" }}
+          className="logo-square-pop"
+          style={{ animationDelay: `${0.4 + i * 0.09}s` }}
         />
       ))}
-    </motion.svg>
+    </svg>
   );
 }

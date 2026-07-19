@@ -61,3 +61,45 @@ h3 {
     scroll-behavior: auto !important;
   }
 }
+
+/*
+ * Header logo entrance, plain CSS rather than framer motion so the mark
+ * is fully present and visible in the server rendered HTML, works with
+ * JavaScript disabled, and needs no client component at all. The
+ * reduced motion rule above already forces every animation-duration to
+ * near zero, which snaps these straight to their settled state for
+ * visitors who have asked for it.
+ */
+@keyframes logo-settle {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes logo-square-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.logo-settle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: logo-settle 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.logo-square-pop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: logo-square-pop 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}

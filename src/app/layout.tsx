@@ -19,20 +19,37 @@ const openSans = Open_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
+// Resolves against whichever domain this deployment actually runs on:
+// the production domain once one is attached, the preview URL Vercel
+// assigns before that, or localhost in development. Never a hardcoded
+// domain that may not be live yet.
+const SITE_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000";
+
+const SITE_TITLE = "Emryz Digital: Websites, POS Solutions, and Author Growth";
+const SITE_DESCRIPTION =
+  "Emryz Digital builds and rebuilds websites on Wix and Squarespace, sets up POS solutions on Toast and Square, and helps authors grow their readership.";
+
 export const metadata: Metadata = {
   title: {
-    default: "Emryz Digital: Websites, POS Solutions, and Author Growth",
+    default: SITE_TITLE,
     template: "%s : Emryz Digital",
   },
-  description:
-    "Emryz Digital builds and rebuilds websites on Wix and Squarespace, sets up POS solutions on Toast and Square, and helps authors grow their readership.",
-  metadataBase: new URL("https://www.emryzdigital.com"),
+  description: SITE_DESCRIPTION,
+  metadataBase: new URL(SITE_URL),
   openGraph: {
-    title: "Emryz Digital: Websites, POS Solutions, and Author Growth",
-    description:
-      "Emryz Digital builds and rebuilds websites on Wix and Squarespace, sets up POS solutions on Toast and Square, and helps authors grow their readership.",
-    images: ["/brand/emryz-digital-logo-lockup.webp"],
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     siteName: "Emryz Digital",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
   },
 };
 

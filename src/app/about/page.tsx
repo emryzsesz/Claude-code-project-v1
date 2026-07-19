@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Section from "@/components/Section";
 import CTASection from "@/components/CTASection";
+import LogoMark from "@/components/LogoMark";
 import Reveal, { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import PixelAccent from "@/components/PixelAccent";
 
@@ -68,13 +68,9 @@ export default function AboutPage() {
             </p>
           </Reveal>
           <Reveal delay={0.15} className="flex justify-center lg:justify-end">
-            <Image
-              src="/brand/emryz-digital-icon-mark.webp"
-              alt="Emryz Digital icon mark"
-              width={1536}
-              height={1024}
-              className="w-full max-w-sm rounded-2xl shadow-xl"
-            />
+            <div className="flex w-full max-w-sm items-center justify-center rounded-2xl border border-border-soft bg-white p-16 shadow-xl">
+              <LogoMark className="h-auto w-full" />
+            </div>
           </Reveal>
         </div>
       </Section>
