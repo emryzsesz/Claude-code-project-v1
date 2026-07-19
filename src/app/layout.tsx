@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Poppins, Open_Sans } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ScrollProgressBar from "@/components/motion/ScrollProgressBar";
+import PageTransition from "@/components/motion/PageTransition";
+import MotionProvider from "@/components/motion/MotionProvider";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -44,9 +47,14 @@ export default function RootLayout({
       className={`${poppins.variable} ${openSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <MotionProvider>
+          <ScrollProgressBar />
+          <Header />
+          <main className="flex-1">
+            <PageTransition>{children}</PageTransition>
+          </main>
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );

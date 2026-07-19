@@ -1,3 +1,5 @@
+import { RevealGroup, RevealItem } from "./motion/Reveal";
+
 type Column = {
   name: string;
   description: string;
@@ -12,9 +14,9 @@ export default function ComparePanel({
 }) {
   return (
     <div>
-      <div className="grid gap-6 sm:grid-cols-2">
+      <RevealGroup className="grid gap-6 sm:grid-cols-2">
         {columns.map((column) => (
-          <div
+          <RevealItem
             key={column.name}
             className="rounded-2xl border border-border-soft bg-white p-8"
           >
@@ -22,9 +24,9 @@ export default function ComparePanel({
             <p className="mt-3 text-sm leading-6 text-navy/70">
               {column.description}
             </p>
-          </div>
+          </RevealItem>
         ))}
-      </div>
+      </RevealGroup>
       <p className="mt-6 text-sm leading-6 text-navy/60">{note}</p>
     </div>
   );

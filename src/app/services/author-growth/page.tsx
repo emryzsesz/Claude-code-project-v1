@@ -4,6 +4,7 @@ import Section from "@/components/Section";
 import IncludedList from "@/components/IncludedList";
 import ProcessSteps from "@/components/ProcessSteps";
 import CTASection from "@/components/CTASection";
+import Reveal, { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = {
   title: "Author Growth and Book Promotion",
@@ -60,58 +61,73 @@ export default function AuthorGrowthPage() {
       />
 
       <Section className="bg-mist">
-        <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-          What is included
-        </h2>
+        <Reveal>
+          <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
+            What is included
+          </h2>
+        </Reveal>
         <div className="mt-10">
           <IncludedList items={included} />
         </div>
       </Section>
 
       <Section>
-        <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-          Who this is for
-        </h2>
-        <div className="mt-8 grid gap-6 text-base leading-7 text-navy/70 sm:grid-cols-3">
-          <p>
-            First time authors preparing for a launch and building an online
-            presence from scratch.
-          </p>
-          <p>
-            Authors with several books already out who want a stronger
-            website and a clearer promotion plan.
-          </p>
-          <p>
-            Independently published and traditionally published authors
-            alike. Our approach adjusts to how you publish.
-          </p>
-        </div>
+        <Reveal>
+          <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
+            Who this is for
+          </h2>
+        </Reveal>
+        <RevealGroup className="mt-8 grid gap-6 text-base leading-7 text-navy/70 sm:grid-cols-3">
+          <RevealItem>
+            <p>
+              First time authors preparing for a launch and building an
+              online presence from scratch.
+            </p>
+          </RevealItem>
+          <RevealItem>
+            <p>
+              Authors with several books already out who want a stronger
+              website and a clearer promotion plan.
+            </p>
+          </RevealItem>
+          <RevealItem>
+            <p>
+              Independently published and traditionally published authors
+              alike. Our approach adjusts to how you publish.
+            </p>
+          </RevealItem>
+        </RevealGroup>
       </Section>
 
       <Section className="bg-mist">
-        <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-          Where we promote your book
-        </h2>
-        <p className="mt-4 max-w-2xl text-base leading-7 text-navy/70">
-          We meet readers where they already are, and we build systems you
-          can keep using long after our work together ends.
-        </p>
-        <ul className="mt-10 grid gap-5 sm:grid-cols-2">
+        <Reveal>
+          <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
+            Where we promote your book
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-navy/70">
+            We meet readers where they already are, and we build systems you
+            can keep using long after our work together ends.
+          </p>
+        </Reveal>
+        <RevealGroup className="mt-10 grid gap-5 sm:grid-cols-2" role="list">
           {channels.map((channel) => (
-            <li
+            <RevealItem
               key={channel}
+              role="listitem"
               className="rounded-2xl border border-border-soft bg-white p-6 text-base leading-7 text-navy/80"
             >
               {channel}
-            </li>
+            </RevealItem>
           ))}
-        </ul>
+        </RevealGroup>
       </Section>
 
       <Section>
-        <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-          Our process
-        </h2>
+        <Reveal>
+          <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
+            Our process
+          </h2>
+        </Reveal>
         <div className="mt-12">
           <ProcessSteps steps={steps} />
         </div>

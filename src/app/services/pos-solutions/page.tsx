@@ -5,6 +5,7 @@ import IncludedList from "@/components/IncludedList";
 import ComparePanel from "@/components/ComparePanel";
 import ProcessSteps from "@/components/ProcessSteps";
 import CTASection from "@/components/CTASection";
+import Reveal, { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = {
   title: "POS Solutions on Toast and Square",
@@ -54,42 +55,54 @@ export default function PosSolutionsPage() {
       />
 
       <Section className="bg-mist">
-        <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-          What is included
-        </h2>
+        <Reveal>
+          <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
+            What is included
+          </h2>
+        </Reveal>
         <div className="mt-10">
           <IncludedList items={included} />
         </div>
       </Section>
 
       <Section>
-        <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-          Who this is for
-        </h2>
-        <div className="mt-8 grid gap-6 text-base leading-7 text-navy/70 sm:grid-cols-3">
-          <p>
-            New restaurants, cafes, and shops that need a POS system set up
-            before opening day.
-          </p>
-          <p>
-            Businesses switching providers and looking for a smoother setup
-            than they had before.
-          </p>
-          <p>
-            Businesses already using Toast or Square that are not getting the
-            full value from their current setup.
-          </p>
-        </div>
+        <Reveal>
+          <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
+            Who this is for
+          </h2>
+        </Reveal>
+        <RevealGroup className="mt-8 grid gap-6 text-base leading-7 text-navy/70 sm:grid-cols-3">
+          <RevealItem>
+            <p>
+              New restaurants, cafes, and shops that need a POS system set up
+              before opening day.
+            </p>
+          </RevealItem>
+          <RevealItem>
+            <p>
+              Businesses switching providers and looking for a smoother setup
+              than they had before.
+            </p>
+          </RevealItem>
+          <RevealItem>
+            <p>
+              Businesses already using Toast or Square that are not getting
+              the full value from their current setup.
+            </p>
+          </RevealItem>
+        </RevealGroup>
       </Section>
 
       <Section className="bg-mist">
-        <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-          Toast or Square
-        </h2>
-        <p className="mt-4 max-w-2xl text-base leading-7 text-navy/70">
-          Both are strong systems, and we set up each one regularly. Here is
-          how we help you choose.
-        </p>
+        <Reveal>
+          <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
+            Toast or Square
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-navy/70">
+            Both are strong systems, and we set up each one regularly. Here is
+            how we help you choose.
+          </p>
+        </Reveal>
         <div className="mt-10">
           <ComparePanel
             columns={[
@@ -110,9 +123,11 @@ export default function PosSolutionsPage() {
       </Section>
 
       <Section>
-        <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-          Our process
-        </h2>
+        <Reveal>
+          <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
+            Our process
+          </h2>
+        </Reveal>
         <div className="mt-12">
           <ProcessSteps steps={steps} />
         </div>

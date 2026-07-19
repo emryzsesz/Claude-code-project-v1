@@ -41,6 +41,16 @@ h2,
 h3,
 h4 {
   font-family: var(--font-heading), Arial, Helvetica, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+h1,
+h2 {
+  line-height: 1.1;
+}
+
+h3 {
+  line-height: 1.25;
 }
 
 @media (prefers-reduced-motion: reduce) {

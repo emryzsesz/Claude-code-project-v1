@@ -5,6 +5,7 @@ import IncludedList from "@/components/IncludedList";
 import ComparePanel from "@/components/ComparePanel";
 import ProcessSteps from "@/components/ProcessSteps";
 import CTASection from "@/components/CTASection";
+import Reveal, { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = {
   title: "Web Design and Redesign on Wix and Squarespace",
@@ -54,42 +55,54 @@ export default function WebDesignPage() {
       />
 
       <Section className="bg-mist">
-        <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-          What is included
-        </h2>
+        <Reveal>
+          <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
+            What is included
+          </h2>
+        </Reveal>
         <div className="mt-10">
           <IncludedList items={included} />
         </div>
       </Section>
 
       <Section>
-        <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-          Who this is for
-        </h2>
-        <div className="mt-8 grid gap-6 text-base leading-7 text-navy/70 sm:grid-cols-3">
-          <p>
-            New businesses that need a first website and want it done right
-            from the start.
-          </p>
-          <p>
-            Established businesses whose site looks outdated, loads slowly,
-            or no longer matches the brand.
-          </p>
-          <p>
-            Businesses moving from another platform to Wix or Squarespace for
-            better tools or lower costs.
-          </p>
-        </div>
+        <Reveal>
+          <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
+            Who this is for
+          </h2>
+        </Reveal>
+        <RevealGroup className="mt-8 grid gap-6 text-base leading-7 text-navy/70 sm:grid-cols-3">
+          <RevealItem>
+            <p>
+              New businesses that need a first website and want it done right
+              from the start.
+            </p>
+          </RevealItem>
+          <RevealItem>
+            <p>
+              Established businesses whose site looks outdated, loads slowly,
+              or no longer matches the brand.
+            </p>
+          </RevealItem>
+          <RevealItem>
+            <p>
+              Businesses moving from another platform to Wix or Squarespace
+              for better tools or lower costs.
+            </p>
+          </RevealItem>
+        </RevealGroup>
       </Section>
 
       <Section className="bg-mist">
-        <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-          Wix or Squarespace
-        </h2>
-        <p className="mt-4 max-w-2xl text-base leading-7 text-navy/70">
-          Both platforms build fast, reliable websites, and we work in each
-          one every week. Here is how we help you choose.
-        </p>
+        <Reveal>
+          <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
+            Wix or Squarespace
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-navy/70">
+            Both platforms build fast, reliable websites, and we work in each
+            one every week. Here is how we help you choose.
+          </p>
+        </Reveal>
         <div className="mt-10">
           <ComparePanel
             columns={[
@@ -110,9 +123,11 @@ export default function WebDesignPage() {
       </Section>
 
       <Section>
-        <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-          Our process
-        </h2>
+        <Reveal>
+          <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
+            Our process
+          </h2>
+        </Reveal>
         <div className="mt-12">
           <ProcessSteps steps={steps} />
         </div>

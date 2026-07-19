@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Section from "@/components/Section";
 import CTASection from "@/components/CTASection";
+import Reveal, { RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import PixelAccent from "@/components/PixelAccent";
 
 export const metadata: Metadata = {
   title: "About",
@@ -46,7 +48,7 @@ export default function AboutPage() {
     <>
       <Section className="pb-12 pt-16 sm:pt-20">
         <div className="grid items-center gap-12 lg:grid-cols-2">
-          <div>
+          <Reveal>
             <p className="text-sm font-semibold uppercase tracking-widest text-green">
               About Emryz Digital
             </p>
@@ -64,8 +66,8 @@ export default function AboutPage() {
               promotion. That focus means we know our tools well and we do
               not waste your time or your budget learning on the job.
             </p>
-          </div>
-          <div className="flex justify-center lg:justify-end">
+          </Reveal>
+          <Reveal delay={0.15} className="flex justify-center lg:justify-end">
             <Image
               src="/brand/emryz-digital-icon-mark.webp"
               alt="Emryz Digital icon mark"
@@ -73,47 +75,56 @@ export default function AboutPage() {
               height={1024}
               className="w-full max-w-sm rounded-2xl shadow-xl"
             />
-          </div>
+          </Reveal>
         </div>
       </Section>
 
-      <Section className="bg-mist">
-        <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-          How we approach the work
-        </h2>
-        <div className="mt-12 grid gap-10 sm:grid-cols-2">
+      <Section className="overflow-hidden bg-mist">
+        <PixelAccent corner="top-right" />
+        <Reveal>
+          <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
+            How we approach the work
+          </h2>
+        </Reveal>
+        <RevealGroup className="mt-12 grid gap-10 sm:grid-cols-2">
           {values.map((value) => (
-            <div key={value.title}>
+            <RevealItem key={value.title}>
               <h3 className="text-xl font-semibold text-navy">
                 {value.title}
               </h3>
               <p className="mt-3 text-base leading-7 text-navy/70">
                 {value.description}
               </p>
-            </div>
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
       </Section>
 
       <Section>
-        <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-          Platforms we work in every week
-        </h2>
-        <p className="mt-4 max-w-2xl text-base leading-7 text-navy/70">
-          We keep this list short so we can stay genuinely good at each one,
-          rather than spreading our attention across every platform on the
-          market.
-        </p>
-        <ul className="mt-10 flex flex-wrap gap-3">
+        <Reveal>
+          <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
+            Platforms we work in every week
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-navy/70">
+            We keep this list short so we can stay genuinely good at each one,
+            rather than spreading our attention across every platform on the
+            market.
+          </p>
+        </Reveal>
+        <RevealGroup
+          className="mt-10 flex flex-wrap gap-3"
+          role="list"
+        >
           {platforms.map((platform) => (
-            <li
+            <RevealItem
               key={platform}
+              role="listitem"
               className="rounded-full border border-border-soft bg-white px-6 py-3 text-sm font-semibold text-navy"
             >
               {platform}
-            </li>
+            </RevealItem>
           ))}
-        </ul>
+        </RevealGroup>
       </Section>
 
       <CTASection

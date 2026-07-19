@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Section from "@/components/Section";
 import ContactForm from "@/components/ContactForm";
+import Reveal from "@/components/motion/Reveal";
+import PixelAccent from "@/components/PixelAccent";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -10,9 +12,10 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <Section className="pb-24 pt-16 sm:pt-20">
+    <Section className="overflow-hidden pb-24 pt-16 sm:pt-20">
+      <PixelAccent corner="top-right" />
       <div className="grid gap-12 lg:grid-cols-2">
-        <div>
+        <Reveal>
           <p className="text-sm font-semibold uppercase tracking-widest text-green">
             Get in touch
           </p>
@@ -48,11 +51,11 @@ export default function ContactPage() {
               <p>One business day, most days sooner.</p>
             </div>
           </div>
-        </div>
+        </Reveal>
 
-        <div className="rounded-2xl border border-border-soft bg-mist p-8 sm:p-10">
+        <Reveal delay={0.15} className="rounded-2xl border border-border-soft bg-mist p-8 sm:p-10">
           <ContactForm />
-        </div>
+        </Reveal>
       </div>
     </Section>
   );

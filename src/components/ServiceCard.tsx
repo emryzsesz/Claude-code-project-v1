@@ -20,9 +20,13 @@ export default function ServiceCard({
   return (
     <Link
       href={href}
-      className="group flex h-full flex-col rounded-2xl border border-border-soft bg-white p-8 transition-all duration-200 hover:-translate-y-1 hover:border-green/40 hover:shadow-lg"
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border-soft bg-white p-8 transition duration-300 ease-out hover:-translate-y-1.5 hover:border-green/40 hover:shadow-[0_24px_48px_-16px_rgba(15,45,76,0.22)]"
     >
-      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-navy-tint text-navy group-hover:bg-green/10 group-hover:text-green">
+      <span
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-green transition-transform duration-300 ease-out group-hover:scale-x-100"
+      />
+      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-navy-tint text-navy transition-colors duration-300 group-hover:bg-green/10 group-hover:text-green">
         <Icon className="h-6 w-6" />
       </div>
       <h3 className="mt-6 text-xl font-semibold text-navy">{title}</h3>
@@ -31,7 +35,7 @@ export default function ServiceCard({
       </p>
       <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-green">
         {linkLabel}
-        <ArrowRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+        <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1" />
       </span>
     </Link>
   );
