@@ -1,7 +1,13 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+import { useDeviceTier } from "@/lib/useDeviceTier";
+
+const HeroShaderCanvas = dynamic(() => import("./webgl/HeroShaderCanvas"), {
+  ssr: false,
+});
 
 type Square = {
   id: number;
@@ -41,31 +47,85 @@ function buildSquares(): Square[] {
 }
 
 /**
- * Full bleed hero backdrop. A static, checkpoint one navy and green
- * gradient mesh plus a scatter of the logo's pixel square motif, used
- * abstractly here and never assembled back into the actual mark. This
- * same layer is also the lite tier and reduced motion fallback once the
- * WebGL shader version lands in a later checkpoint. Every square always
- * renders as the same motion.div regardless of motion preference,
- * MotionProvider mutes the float globally for reduced motion users.
+ * Full bleed hero backdrop. The navy base, blurred gradient blobs, pixel
+ * square scatter, and contrast overlay are the checkpoint one layer:
+ * always rendered, content first. On top of that, once useDeviceTier
+ * resolves to "full" and this section has scrolled near the viewport, a
+ * WebGL shader canvas fades in and takes over the flowing gradient look,
+ * dynamic imported with ssr false so none of three.js reaches anyone who
+ * never actually sees it, gated by an IntersectionObserver so it never
+ * runs offscreen. Every visitor who is on reduced motion, a touch
+ * device, a weak desktop, or has JavaScript off at all simply keeps the
+ * CSS version, which was designed to stand on its own, not as an empty
+ * placeholder.
  */
 export default function HeroBackground() {
   const squares = useMemo(() => buildSquares(), []);
+  const tier = useDeviceTier();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isNearViewport, setIsNearViewport] = useState(false);
+  const [shaderReady, setShaderReady] = useState(false);
+
+  const wantsShader = tier === "full";
+
+  useEffect(() => {
+    if (!wantsShader) return;
+    const node = containerRef.current;
+    if (!node) return;
+
+    let observer: IntersectionObserver | undefined;
+    const setup = () => {
+      observer = new IntersectionObserver(
+        ([entry]) => setIsNearViewport(entry.isIntersecting),
+        { rootMargin: "200px 0px" }
+      );
+      observer.observe(node);
+    };
+
+    // The hero sits above the fold, so an IntersectionObserver alone
+    // would fire almost immediately and race three.js's setup against
+    // the rest of hydration, which is exactly what drove desktop TBT up
+    // in testing. Waiting for the browser to report idle time (with a
+    // capped fallback for browsers without requestIdleCallback) pushes
+    // that work out of the critical loading path instead.
+    const hasIdleCallback = "requestIdleCallback" in window;
+    const idleId = hasIdleCallback
+      ? window.requestIdleCallback(setup, { timeout: 2000 })
+      : window.setTimeout(setup, 300);
+
+    return () => {
+      if (hasIdleCallback) {
+        window.cancelIdleCallback(idleId as number);
+      } else {
+        window.clearTimeout(idleId as number);
+      }
+      observer?.disconnect();
+    };
+  }, [wantsShader]);
+
+  const showShader = wantsShader && isNearViewport;
 
   return (
-    <div className="absolute inset-0 overflow-hidden bg-navy">
+    <div ref={containerRef} className="absolute inset-0 overflow-hidden bg-navy">
       <div
         aria-hidden="true"
-        className="absolute -left-1/4 -top-1/3 h-[70%] w-[70%] rounded-full bg-green/30 blur-[110px]"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute -right-1/4 top-1/4 h-[60%] w-[60%] rounded-full bg-navy-dark blur-[100px]"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute -bottom-1/3 left-1/3 h-[65%] w-[65%] rounded-full bg-lime/20 blur-[120px]"
-      />
+        className="absolute inset-0 transition-opacity duration-700"
+        style={{ opacity: shaderReady ? 0 : 1 }}
+      >
+        <div className="absolute -left-1/4 -top-1/3 h-[70%] w-[70%] rounded-full bg-green/30 blur-[110px]" />
+        <div className="absolute -right-1/4 top-1/4 h-[60%] w-[60%] rounded-full bg-navy-dark blur-[100px]" />
+        <div className="absolute -bottom-1/3 left-1/3 h-[65%] w-[65%] rounded-full bg-lime/20 blur-[120px]" />
+      </div>
+
+      {showShader && (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 transition-opacity duration-700"
+          style={{ opacity: shaderReady ? 1 : 0 }}
+        >
+          <HeroShaderCanvas onReady={() => setShaderReady(true)} />
+        </div>
+      )}
 
       <div aria-hidden="true" className="absolute inset-0">
         {squares.map((sq) => (
