@@ -12,17 +12,13 @@ export type PortfolioProject = {
   title: string;
   category: PortfolioCategory;
   summary: string;
-  isPlaceholder?: boolean;
   image?: string;
   client?: string;
   youtubeId?: string;
 };
 
 /**
- * Most entries below are real Emryz Digital client projects. Anything
- * still a placeholder is marked isPlaceholder so the PLACEHOLDER badge
- * in PortfolioScroll only shows where it is still true, swap it for a
- * real case study once it is ready to publish.
+ * Every entry below is a real Emryz Digital client project.
  */
 export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
@@ -76,10 +72,11 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   },
   {
     id: "author-2",
-    title: "Add your author client name",
+    title: "The Power of Being Present",
     category: "Author Growth",
+    client: "Patrick McLaughlin",
     summary:
-      "Replace with a short description of the book, the campaign, and the result.",
-    isPlaceholder: true,
+      "Experience the message of mindfulness and awareness through this cinematic AI crafted book trailer for The Power of Being Present. A visually engaging promotional video designed to attract readers and increase visibility.",
+    youtubeId: "BzMuT67WSrU",
   },
 ];

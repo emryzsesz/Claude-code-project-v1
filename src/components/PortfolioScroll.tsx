@@ -91,11 +91,6 @@ function ProjectCard({ project }: { project: PortfolioProject }) {
         ) : (
           <Icon className="h-10 w-10 text-white/70" />
         )}
-        {project.isPlaceholder && (
-          <span className="absolute left-3 top-3 rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-white backdrop-blur">
-            Placeholder
-          </span>
-        )}
       </div>
       <div className="p-6">
         <p className="text-xs font-semibold uppercase tracking-wide text-green">
