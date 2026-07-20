@@ -15,9 +15,20 @@ export default function PortfolioPage() {
   return (
     <>
       <Section className="overflow-hidden pb-10 pt-16 sm:pt-20">
+        <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
+          <div className="absolute -left-1/4 -top-1/3 h-[60%] w-[60%] animate-breathe rounded-full bg-green/15 blur-[100px]" />
+          <div
+            className="absolute -right-1/4 top-0 h-[55%] w-[55%] animate-breathe rounded-full bg-navy/10 blur-[110px]"
+            style={{ animationDelay: "-5s" }}
+          />
+          <div
+            className="absolute -bottom-1/4 left-1/3 h-[50%] w-[50%] animate-breathe rounded-full bg-lime/20 blur-[120px]"
+            style={{ animationDelay: "-9s" }}
+          />
+        </div>
         <PixelAccent corner="top-right" />
         <HeroReveal>
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="relative z-10 mx-auto max-w-3xl text-center">
             <HeroRevealItem>
               <p className="text-sm font-semibold uppercase tracking-widest text-green">
                 Portfolio
@@ -30,9 +41,9 @@ export default function PortfolioPage() {
             </HeroRevealItem>
             <HeroRevealItem className="mt-6">
               <p className="text-lg leading-8 text-navy/70">
-                Scroll to move through work in each area. The entries below
-                are placeholders, marked clearly, ready to be swapped for
-                real projects as they launch.
+                Scroll to move through real projects across Wix, Squarespace,
+                and POS work, with a couple of author growth spots still
+                being filled in.
               </p>
             </HeroRevealItem>
           </div>
