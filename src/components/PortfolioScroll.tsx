@@ -9,7 +9,7 @@ import {
 } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { PORTFOLIO_PROJECTS, PortfolioProject } from "@/lib/portfolio";
-import { GlobeIcon, PhoneIcon, BookIcon } from "./icons";
+import { GlobeIcon, PhoneIcon, BookIcon, PlayIcon } from "./icons";
 import { useIsCoarsePointer, useMotionTier } from "@/lib/useMotionTier";
 
 const categoryIcon: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
@@ -26,17 +26,60 @@ const categoryTint: Record<string, string> = {
   "Author Growth": "from-green-dark to-navy",
 };
 
+/**
+ * YouTube thumbnails are not guaranteed to exist at maxresdefault, some
+ * videos only ever get the lower resolutions generated, so this steps
+ * down to hqdefault, which YouTube always generates, before finally
+ * falling back to the plain category icon.
+ */
+function VideoThumb({ project }: { project: PortfolioProject }) {
+  const [tier, setTier] = useState<"maxres" | "hq" | "failed">("maxres");
+  const Icon = categoryIcon[project.category];
+
+  return (
+    <a
+      href={`https://youtu.be/${project.youtubeId}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Watch the ${project.title} video ad on YouTube`}
+      data-cursor-label="play"
+      className="group absolute inset-0"
+    >
+      {tier !== "failed" ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={`https://img.youtube.com/vi/${project.youtubeId}/${tier === "maxres" ? "maxresdefault" : "hqdefault"}.jpg`}
+          alt={project.title}
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+          onError={() => setTier(tier === "maxres" ? "hq" : "failed")}
+        />
+      ) : (
+        <Icon className="absolute inset-0 m-auto h-10 w-10 text-white/70" />
+      )}
+      <div className="absolute inset-0 flex items-center justify-center bg-navy/0 transition-colors duration-200 group-hover:bg-navy/60">
+        <span className="flex h-12 w-12 scale-90 items-center justify-center rounded-full bg-white/90 text-navy opacity-0 transition-all duration-200 group-hover:scale-100 group-hover:opacity-100">
+          <PlayIcon className="ml-0.5 h-5 w-5" />
+        </span>
+      </div>
+    </a>
+  );
+}
+
 function ProjectCard({ project }: { project: PortfolioProject }) {
   const Icon = categoryIcon[project.category];
   const [imageFailed, setImageFailed] = useState(false);
   const showImage = Boolean(project.image) && !imageFailed;
+  const showVideo = Boolean(project.youtubeId);
 
   return (
     <div className="h-full overflow-hidden rounded-2xl border border-border-soft bg-white">
       <div
         className={`relative flex h-40 items-center justify-center bg-gradient-to-br ${categoryTint[project.category]}`}
       >
-        {showImage ? (
+        {showVideo ? (
+          <VideoThumb project={project} />
+        ) : showImage ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={project.image}
@@ -59,6 +102,9 @@ function ProjectCard({ project }: { project: PortfolioProject }) {
           {project.category}
         </p>
         <h3 className="mt-2 text-lg font-semibold text-navy">{project.title}</h3>
+        {project.client && (
+          <p className="mt-1 text-sm font-medium text-navy/50">{project.client}</p>
+        )}
         <p className="mt-2 text-sm leading-6 text-navy/70">{project.summary}</p>
       </div>
     </div>

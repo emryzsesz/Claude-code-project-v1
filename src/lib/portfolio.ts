@@ -14,14 +14,15 @@ export type PortfolioProject = {
   summary: string;
   isPlaceholder?: boolean;
   image?: string;
+  client?: string;
+  youtubeId?: string;
 };
 
 /**
- * The Wix and Squarespace entries below are real Emryz Digital client
- * projects. The POS and Author Growth entries are still placeholders,
- * marked isPlaceholder so the PLACEHOLDER badge in PortfolioScroll only
- * shows where it is still true, swap them for real case studies once
- * they are ready to publish.
+ * Most entries below are real Emryz Digital client projects. Anything
+ * still a placeholder is marked isPlaceholder so the PLACEHOLDER badge
+ * in PortfolioScroll only shows where it is still true, swap it for a
+ * real case study once it is ready to publish.
  */
 export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
@@ -66,11 +67,12 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   },
   {
     id: "author-1",
-    title: "Add your author client name",
+    title: "Empires Lost: Cold War Memoir",
     category: "Author Growth",
+    client: "Michael G. Bergen",
     summary:
-      "Replace with a short description of the book, the campaign, and the result.",
-    isPlaceholder: true,
+      "An AI generated video ad promoting Empires Lost, a gripping Cold War memoir and Part 4 of The Rutherford Chronicles. A powerful story blending personal experience with world history through firsthand accounts of searching for Soviet submarines, facing Cuban Missile Crisis tensions, witnessing the Berlin Wall, and the fall of the USSR.",
+    youtubeId: "RE2gFE6Ozcc",
   },
   {
     id: "author-2",
