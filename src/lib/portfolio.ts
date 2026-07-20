@@ -12,42 +12,44 @@ export type PortfolioProject = {
   title: string;
   category: PortfolioCategory;
   summary: string;
+  isPlaceholder?: boolean;
 };
 
 /**
- * Placeholder entries. Every title and summary below is a stand in, swap
- * each one for a real project once Emryz Digital has case studies ready
- * to publish. The PLACEHOLDER badge on each card in PortfolioScroll makes
- * this obvious to site visitors as well, not just in this file.
+ * The Wix and Squarespace entries below are real Emryz Digital client
+ * projects. The POS and Author Growth entries are still placeholders,
+ * marked isPlaceholder so the PLACEHOLDER badge in PortfolioScroll only
+ * shows where it is still true, swap them for real case studies once
+ * they are ready to publish.
  */
 export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
     id: "wix-1",
-    title: "Add your Wix project title",
+    title: "Proceeds Solution LLC",
     category: "Wix",
     summary:
-      "Replace with a short description of the business, what was built, and the result.",
+      "A company that helps homeowners, heirs, and estate representatives recover unclaimed surplus funds after a foreclosure or tax sale. We built a full Wix site that explains the recovery process in plain language, walks visitors through eligibility, and backs every claim with trust signals and an FAQ. The result is a clear path from a visitor asking if they are owed money to a submitted eligibility check.",
   },
   {
     id: "wix-2",
-    title: "Add your Wix project title",
+    title: "Legacy Response",
     category: "Wix",
     summary:
-      "Replace with a short description of the business, what was built, and the result.",
+      "A nonprofit software company behind three connected products, aKinder Volunteer, aKinder Wellness, and aKinder Chat, each aimed at strengthening community health and volunteer engagement. We built a Wix Studio site that introduces all three products clearly, backs the mission with a founder quote, and gives nonprofits an easy path to request a demo. The result is a site that turns a broad mission into three understandable offers nonprofits can act on.",
   },
   {
     id: "squarespace-1",
-    title: "Add your Squarespace project title",
+    title: "Knapsack",
     category: "Squarespace",
     summary:
-      "Replace with a short description of the business, what was built, and the result.",
+      "A web design agency that builds Squarespace sites for service based experts like financial advisors and wellness practices. We built their own Squarespace site around a clear growth promise, real client logos, a free guide download, and a nationwide client list. The result is a site that sells the agency the same way it sells its client work, with clear proof and a steady stream of guide downloads and booked calls.",
   },
   {
     id: "squarespace-2",
-    title: "Add your Squarespace project title",
+    title: "The Tour Pals",
     category: "Squarespace",
     summary:
-      "Replace with a short description of the business, what was built, and the result.",
+      "A VIP theme park tour company guiding families through Disney, Universal, and Epic Universe parks across Florida and California. We built a vibrant Squarespace site with a free trip planning call, real guest testimonials, and a results strip showing over 500 VIP tours delivered a year, a 98 percent satisfaction rate, and over 200 reviews. The result is a site that turns a big, once in a lifetime trip decision into an easy booked call.",
   },
   {
     id: "pos-1",
@@ -55,6 +57,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     category: "POS",
     summary:
       "Replace with a short description of the business, what was set up, and the result.",
+    isPlaceholder: true,
   },
   {
     id: "pos-2",
@@ -62,6 +65,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     category: "POS",
     summary:
       "Replace with a short description of the business, what was set up, and the result.",
+    isPlaceholder: true,
   },
   {
     id: "author-1",
@@ -69,6 +73,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     category: "Author Growth",
     summary:
       "Replace with a short description of the book, the campaign, and the result.",
+    isPlaceholder: true,
   },
   {
     id: "author-2",
@@ -76,5 +81,6 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     category: "Author Growth",
     summary:
       "Replace with a short description of the book, the campaign, and the result.",
+    isPlaceholder: true,
   },
 ];
