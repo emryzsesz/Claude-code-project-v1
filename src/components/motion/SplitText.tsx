@@ -50,7 +50,7 @@ export default function SplitText({
 
   const triggerProps =
     trigger === "inView"
-      ? { whileInView: "show", viewport: { once: true, amount: 0.4 } }
+      ? { whileInView: "show", viewport: { once: true, amount: "some" as const } }
       : { animate: "show" };
 
   return (

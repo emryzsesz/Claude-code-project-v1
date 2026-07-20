@@ -7,6 +7,14 @@ import { AnimatePresence, motion } from "framer-motion";
 const PHASE_DURATION = 0.3;
 const EASE = [0.65, 0, 0.35, 1] as const;
 
+/**
+ * Total time the cover and reveal phases take together, in milliseconds.
+ * Exported so SmoothScrollProvider can time its post navigation scroll
+ * reset to land after the new page has actually mounted and finished
+ * revealing, rather than guessing a delay independently of this value.
+ */
+export const PAGE_TRANSITION_MS = PHASE_DURATION * 2 * 1000;
+
 const panelVariants = {
   covering: { y: "0%" },
   hidden: { y: "100%" },

@@ -29,6 +29,12 @@ const clipVariants: Record<SectionTransitionStyle, { hidden: string; show: strin
  * row. Reduced motion visitors get the section at full clip immediately,
  * handled by MotionConfig muting the transition duration globally rather
  * than branching structure here.
+ *
+ * viewport uses amount "some" rather than a numeric threshold like 0.2
+ * on purpose. Verified against a real reproduction: a numeric amount
+ * here reliably failed to ever fire again after a client side route
+ * change under AnimatePresence, leaving the section clipped to nothing
+ * permanently, while "some" fires correctly every time.
  */
 export default function SectionReveal({
   children,
@@ -43,7 +49,7 @@ export default function SectionReveal({
     <motion.div
       initial={{ clipPath: hidden }}
       whileInView={{ clipPath: show }}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: "some" }}
       transition={{ duration: 1.1, ease: EASE }}
       className="relative"
     >
