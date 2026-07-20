@@ -1,6 +1,12 @@
 "use client";
 
-import { ComponentType, SVGProps, useLayoutEffect, useRef, useState } from "react";
+import {
+  ComponentType,
+  SVGProps,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { PORTFOLIO_PROJECTS, PortfolioProject } from "@/lib/portfolio";
 import { GlobeIcon, PhoneIcon, BookIcon } from "./icons";
@@ -22,12 +28,26 @@ const categoryTint: Record<string, string> = {
 
 function ProjectCard({ project }: { project: PortfolioProject }) {
   const Icon = categoryIcon[project.category];
+  const [imageFailed, setImageFailed] = useState(false);
+  const showImage = Boolean(project.image) && !imageFailed;
+
   return (
     <div className="h-full overflow-hidden rounded-2xl border border-border-soft bg-white">
       <div
         className={`relative flex h-40 items-center justify-center bg-gradient-to-br ${categoryTint[project.category]}`}
       >
-        <Icon className="h-10 w-10 text-white/70" />
+        {showImage ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={project.image}
+            alt={project.title}
+            className="absolute inset-0 h-full w-full object-cover"
+            loading="lazy"
+            onError={() => setImageFailed(true)}
+          />
+        ) : (
+          <Icon className="h-10 w-10 text-white/70" />
+        )}
         {project.isPlaceholder && (
           <span className="absolute left-3 top-3 rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-white backdrop-blur">
             Placeholder
