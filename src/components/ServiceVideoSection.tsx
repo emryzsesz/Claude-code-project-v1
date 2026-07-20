@@ -6,6 +6,7 @@ import Button from "./Button";
 import VideoBackdrop from "./motion/VideoBackdrop";
 import SplitText from "./motion/SplitText";
 import { GlobeIcon, PhoneIcon, BookIcon } from "./icons";
+import { useIsCoarsePointer } from "@/lib/useMotionTier";
 
 const ICONS = {
   globe: GlobeIcon,
@@ -49,6 +50,7 @@ export default function ServiceVideoSection({
   const Icon = ICONS[icon];
   const containerRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
+  const coarsePointer = useIsCoarsePointer();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -57,7 +59,7 @@ export default function ServiceVideoSection({
   const videoY = useTransform(
     scrollYProgress,
     [0, 1],
-    ["-6%", prefersReducedMotion ? "-6%" : "6%"]
+    ["-6%", prefersReducedMotion || coarsePointer ? "-6%" : "6%"]
   );
   const squaresY = useTransform(
     scrollYProgress,
@@ -69,6 +71,7 @@ export default function ServiceVideoSection({
     <div
       ref={containerRef}
       className="relative isolate flex min-h-screen items-center overflow-hidden bg-navy"
+      data-cursor-label="play"
     >
       <div aria-hidden="true" className="absolute inset-0 bg-navy-dark">
         <div className="absolute -left-1/4 top-1/4 h-[70%] w-[70%] rounded-full bg-green/25 blur-[120px]" />

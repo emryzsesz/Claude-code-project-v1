@@ -138,6 +138,20 @@ h3 {
   animation: marquee 32s linear infinite;
 }
 
+/*
+ * Applied to the html element only once CustomCursor confirms this is a
+ * desktop, full motion visitor. Text fields keep the native cursor since
+ * a custom dot is not useful feedback while typing.
+ */
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
+}
+
+.custom-cursor-active :is(input, textarea, select) {
+  cursor: auto !important;
+}
+
 .marquee-group:hover .marquee-track {
   animation-direction: reverse;
 }

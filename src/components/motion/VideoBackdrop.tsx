@@ -1,18 +1,18 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { motion, MotionValue } from "framer-motion";
-import { useIsCoarsePointer, useMotionTier } from "@/lib/useMotionTier";
+import { useMotionTier } from "@/lib/useMotionTier";
 
 /**
  * Shared video-with-fallback layer used by the hero and every full
- * viewport service section. Only mounts a video element for full tier,
- * fine pointer visitors, and only plays it while the section is actually
- * near the viewport, driven manually through IntersectionObserver rather
- * than the autoplay attribute so preload stays "none" until it matters.
- * Every other visitor, and anyone this fails for, simply sees whatever
- * fallback the caller renders behind this layer, since this renders
- * nothing at all in that case.
+ * viewport service section. Mounts on every device, touch included, for
+ * every visitor except reduced motion. Autoplay, muted, loop, and
+ * playsinline are plain HTML attributes, the same on mobile and desktop:
+ * muted is what lets autoplay run on iOS, so no JavaScript play call is
+ * needed anywhere. If a browser declines to autoplay regardless, the
+ * poster image is what shows, which is the correct native fallback, not
+ * something this component needs to detect or work around.
  */
 export default function VideoBackdrop({
   src,
@@ -28,43 +28,19 @@ export default function VideoBackdrop({
   onReady?: (ready: boolean) => void;
 }) {
   const tier = useMotionTier();
-  const coarsePointer = useIsCoarsePointer();
-  const containerRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
 
-  const wantsVideo = tier === "full" && !coarsePointer;
-  const showVideo = wantsVideo && !failed;
-
-  useEffect(() => {
-    if (!wantsVideo) return;
-    const node = containerRef.current;
-    const video = videoRef.current;
-    if (!node || !video) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [wantsVideo]);
+  const showVideo = tier === "full" && !failed;
 
   return (
-    <div ref={containerRef} className="absolute inset-0 overflow-hidden">
+    <div className="absolute inset-0 overflow-hidden">
       {showVideo && (
         <motion.video
-          ref={videoRef}
           aria-hidden="true"
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${breathe ? "animate-breathe" : ""}`}
           style={{ opacity: ready ? 1 : 0, y: parallaxY }}
+          autoPlay
           muted
           loop
           playsInline

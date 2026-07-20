@@ -22,6 +22,7 @@ export default function Header() {
               key={link.href}
               href={link.href}
               className="text-sm font-medium text-navy/80 transition-colors duration-200 hover:text-green"
+              data-cursor-label="view"
             >
               {link.label}
             </Link>

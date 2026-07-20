@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { ReactNode } from "react";
+import { motion } from "framer-motion";
 import { ArrowRightIcon } from "./icons";
+import { useMagnetic } from "@/lib/useMagnetic";
 
 type ButtonProps = {
   href: string;
@@ -26,6 +30,11 @@ const variants = {
   },
 };
 
+/**
+ * Primary CTA buttons pull toward the cursor within 80px, every other
+ * variant passes radius zero into useMagnetic, which makes the hook a
+ * no op rather than needing a second, unmagnetic code path.
+ */
 export default function Button({
   href,
   children,
@@ -34,17 +43,26 @@ export default function Button({
   showArrow = true,
 }: ButtonProps) {
   const v = variants[variant];
+  const { triggerRef, springX, springY } = useMagnetic(variant === "primary" ? 80 : 0);
 
   return (
-    <Link href={href} className={`${base} ${v.base} ${className}`}>
-      <span
-        aria-hidden="true"
-        className={`absolute inset-0 -translate-x-full transition-transform duration-300 ease-out group-hover:translate-x-0 ${v.wipe}`}
-      />
-      <span className="relative">{children}</span>
-      {showArrow && (
-        <ArrowRightIcon className="relative h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1" />
-      )}
-    </Link>
+    <div ref={triggerRef} className="inline-block">
+      <motion.div style={{ x: springX, y: springY }} className="inline-block">
+        <Link
+          href={href}
+          className={`${base} ${v.base} ${className}`}
+          data-cursor-label="open"
+        >
+          <span
+            aria-hidden="true"
+            className={`absolute inset-0 -translate-x-full transition-transform duration-300 ease-out group-hover:translate-x-0 ${v.wipe}`}
+          />
+          <span className="relative">{children}</span>
+          {showArrow && (
+            <ArrowRightIcon className="relative h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1" />
+          )}
+        </Link>
+      </motion.div>
+    </div>
   );
 }

@@ -7,6 +7,8 @@ import PageTransition from "@/components/motion/PageTransition";
 import MotionProvider from "@/components/motion/MotionProvider";
 import SmoothScrollProvider from "@/components/motion/SmoothScrollProvider";
 import LoadingScreen from "@/components/LoadingScreen";
+import CustomCursor from "@/components/motion/CustomCursor";
+import SoundToggle from "@/components/SoundToggle";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -68,6 +70,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <MotionProvider>
           <LoadingScreen />
+          <CustomCursor />
           <SmoothScrollProvider>
             <ScrollProgressBar />
             <Header />
@@ -76,6 +79,7 @@ export default function RootLayout({
             </main>
             <Footer />
           </SmoothScrollProvider>
+          <SoundToggle />
         </MotionProvider>
       </body>
     </html>

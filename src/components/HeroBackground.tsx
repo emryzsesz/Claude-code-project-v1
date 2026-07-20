@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { useScroll, useTransform, useReducedMotion } from "framer-motion";
 import VideoBackdrop from "./motion/VideoBackdrop";
+import { useIsCoarsePointer } from "@/lib/useMotionTier";
 
 const HERO_VIDEO_SRC = "/video/hero.mp4";
 const HERO_POSTER_SRC = "/video/hero-poster.jpg";
@@ -17,6 +18,7 @@ const HERO_POSTER_SRC = "/video/hero-poster.jpg";
 export default function HeroBackground() {
   const containerRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
+  const coarsePointer = useIsCoarsePointer();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -25,7 +27,7 @@ export default function HeroBackground() {
   const parallaxY = useTransform(
     scrollYProgress,
     [0, 1],
-    ["0%", prefersReducedMotion ? "0%" : "18%"]
+    ["0%", prefersReducedMotion || coarsePointer ? "0%" : "18%"]
   );
 
   return (

@@ -5,7 +5,7 @@ import CTASection from "@/components/CTASection";
 import HeroBackground from "@/components/HeroBackground";
 import ServiceVideoSection from "@/components/ServiceVideoSection";
 import MarqueeStrip from "@/components/MarqueeStrip";
-import StatsStrip from "@/components/StatsStrip";
+import StatsSection from "@/components/StatsSection";
 import { HeroReveal, HeroRevealItem } from "@/components/motion/HeroReveal";
 import Reveal, { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import SplitText from "@/components/motion/SplitText";
@@ -87,7 +87,10 @@ const steps = [
 export default function Home() {
   return (
     <>
-      <section className="relative isolate flex min-h-[640px] items-center overflow-hidden py-28 sm:min-h-[720px]">
+      <section
+        className="relative isolate flex min-h-[640px] items-center overflow-hidden py-28 sm:min-h-[720px]"
+        data-cursor-label="play"
+      >
         <HeroBackground />
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6 sm:px-8">
           <HeroReveal>
@@ -149,9 +152,7 @@ export default function Home() {
         ))}
       </div>
 
-      <Section className="bg-navy">
-        <StatsStrip />
-      </Section>
+      <StatsSection />
 
       <Section>
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">

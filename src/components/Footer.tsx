@@ -27,17 +27,29 @@ export default function Footer() {
           </h3>
           <ul className="mt-4 space-y-3 text-sm text-navy/70">
             <li>
-              <Link href="/services/web-design" className="hover:text-green">
+              <Link
+                href="/services/web-design"
+                className="hover:text-green"
+                data-cursor-label="view"
+              >
                 Web Design and Redesign
               </Link>
             </li>
             <li>
-              <Link href="/services/pos-solutions" className="hover:text-green">
+              <Link
+                href="/services/pos-solutions"
+                className="hover:text-green"
+                data-cursor-label="view"
+              >
                 POS Solutions
               </Link>
             </li>
             <li>
-              <Link href="/services/author-growth" className="hover:text-green">
+              <Link
+                href="/services/author-growth"
+                className="hover:text-green"
+                data-cursor-label="view"
+              >
                 Author Growth
               </Link>
             </li>
@@ -50,22 +62,30 @@ export default function Footer() {
           </h3>
           <ul className="mt-4 space-y-3 text-sm text-navy/70">
             <li>
-              <Link href="/about" className="hover:text-green">
+              <Link href="/about" className="hover:text-green" data-cursor-label="view">
                 About
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:text-green">
+              <Link href="/contact" className="hover:text-green" data-cursor-label="view">
                 Contact
               </Link>
             </li>
             <li>
-              <a href="mailto:emryzdigital@gmail.com" className="hover:text-green">
+              <a
+                href="mailto:emryzdigital@gmail.com"
+                className="hover:text-green"
+                data-cursor-label="open"
+              >
                 emryzdigital@gmail.com
               </a>
             </li>
             <li>
-              <a href="tel:+2348165993286" className="hover:text-green">
+              <a
+                href="tel:+2348165993286"
+                className="hover:text-green"
+                data-cursor-label="open"
+              >
                 +234 816 599 3286
               </a>
             </li>

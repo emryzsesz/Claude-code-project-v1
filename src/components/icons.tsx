@@ -119,3 +119,39 @@ export function ArrowRightIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function SoundOnIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M4 10v4h4l5 4V6l-5 4H4z" />
+      <path d="M16.5 9a4.2 4.2 0 0 1 0 6" />
+      <path d="M19 6.5a8.2 8.2 0 0 1 0 11" />
+    </svg>
+  );
+}
+
+export function SoundOffIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M4 10v4h4l5 4V6l-5 4H4z" />
+      <path d="M16 9.5l4.5 5" />
+      <path d="M20.5 9.5l-4.5 5" />
+    </svg>
+  );
+}
