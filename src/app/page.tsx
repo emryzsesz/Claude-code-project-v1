@@ -36,8 +36,8 @@ const services = [
     description:
       "We set up and configure Toast and Square so your front counter runs smoothly. Menus, catalogs, staff training, and reporting, all handled for you.",
     ctaLabel: "Explore POS Solutions",
-    videoSrc: "/video/pos.mp4",
-    posterSrc: "/video/pos-poster.jpg",
+    videoSrc: "/video/pos-solutions.mp4",
+    posterSrc: "/video/pos-solutions-poster.jpg",
   },
   {
     href: "/services/author-growth",

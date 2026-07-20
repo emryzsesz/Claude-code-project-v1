@@ -77,6 +77,7 @@ export default function VideoBackdrop({
           onError={() => setFailed(true)}
         >
           <source src={src} type="video/mp4" />
+          <source src={src.replace(/\.mp4$/, ".webm")} type="video/webm" />
         </motion.video>
       )}
     </div>
