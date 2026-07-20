@@ -7,31 +7,30 @@ type Testimonial = {
   rating: number;
 };
 
-/**
- * Placeholder entries. Replace each quote, name, and role with a real
- * client testimonial once one is ready to publish. The Placeholder tag
- * on each card makes that obvious to visitors as well, not just here.
- */
 const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      "Replace this with a real quote from a client about their experience working with us.",
-    name: "Client Name",
-    role: "Add their role or business",
+      "Brilliant. Went above and beyond. Will definitely be working on future projects again.",
+    name: "Tom",
+    role: "Rental Software Setup Client",
     rating: 5,
   },
   {
-    quote:
-      "Replace this with a real quote about the website, POS setup, or promotion campaign we built.",
-    name: "Client Name",
-    role: "Add their role or business",
+    quote: "Very knowledgeable, friendly, have great understanding and very patient.",
+    name: "Cedric",
+    role: "Square POS Client",
     rating: 5,
   },
   {
-    quote:
-      "Replace this with a real quote describing the result the client saw after working with us.",
-    name: "Client Name",
-    role: "Add their role or business",
+    quote: "This guy knows his stuff. I will be using him for all my POS problems.",
+    name: "Corey",
+    role: "Square and WordPress Client",
+    rating: 5,
+  },
+  {
+    quote: "I have enjoyed working with Emmanuel.",
+    name: "Michael",
+    role: "Book Promotion Client",
     rating: 5,
   },
 ];
@@ -39,15 +38,10 @@ const TESTIMONIALS: Testimonial[] = [
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
     <div className="w-[85vw] shrink-0 rounded-2xl border-l-4 border-green bg-[#0f1b2c] p-8 sm:w-[420px]">
-      <div className="flex items-center justify-between">
-        <div className="flex gap-1 text-lime" aria-hidden="true">
-          {Array.from({ length: testimonial.rating }).map((_, i) => (
-            <StarIcon key={i} className="h-4 w-4" />
-          ))}
-        </div>
-        <span className="rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-white/60">
-          Placeholder
-        </span>
+      <div className="flex gap-1 text-lime" aria-hidden="true">
+        {Array.from({ length: testimonial.rating }).map((_, i) => (
+          <StarIcon key={i} className="h-4 w-4" />
+        ))}
       </div>
       <p className="mt-6 text-base leading-7 text-white/85">
         {testimonial.quote}

@@ -53,19 +53,10 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   },
   {
     id: "pos-1",
-    title: "Add your Toast project title",
+    title: "The Wholesale Hair Guy",
     category: "POS",
     summary:
-      "Replace with a short description of the business, what was set up, and the result.",
-    isPlaceholder: true,
-  },
-  {
-    id: "pos-2",
-    title: "Add your Square project title",
-    category: "POS",
-    summary:
-      "Replace with a short description of the business, what was set up, and the result.",
-    isPlaceholder: true,
+      "An online retailer selling hair extensions, closures, and accessories at wholesale pricing, with a catalog spanning bonnets, clip ins, glue, and HD closures in a full range of textures. We set up their Square account and built out the complete item library, organized into clear reporting categories with real pricing and live stock status for every product. The result is a catalog that is actually running, ready to sell and easy for their team to keep current.",
   },
   {
     id: "author-1",

@@ -204,8 +204,8 @@ export default function Home() {
             What clients say
           </h2>
           <p className="mt-4 text-base leading-7 text-white/70">
-            Real testimonials are on their way as projects launch. Here is
-            the space we have built for them.
+            A few words from clients we have worked with across web design,
+            POS setup, and book promotion.
           </p>
         </Reveal>
         <div className="mt-14">
