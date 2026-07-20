@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import ServiceHero from "@/components/ServiceHero";
+import PageHero from "@/components/PageHero";
 import Section from "@/components/Section";
-import IncludedList from "@/components/IncludedList";
+import FeatureCards from "@/components/FeatureCards";
 import ProcessSteps from "@/components/ProcessSteps";
 import CTASection from "@/components/CTASection";
 import Reveal, { RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import SectionReveal, {
+  SectionTransitionStyle,
+} from "@/components/motion/SectionReveal";
 
 export const metadata: Metadata = {
   title: "Author Growth and Book Promotion",
@@ -51,81 +54,93 @@ const steps = [
   },
 ];
 
+const transitionStyles: SectionTransitionStyle[] = ["wipe", "radial", "curtain"];
+
 export default function AuthorGrowthPage() {
   return (
     <>
-      <ServiceHero
+      <PageHero
         eyebrow="Author Growth"
         title="Author growth and book promotion"
         description="Writing the book is only half the job. We help authors build a readership, plan a launch, and keep selling long after release day."
+        videoSrc="/video/author-growth.mp4"
+        posterSrc="/video/author-growth-poster.jpg"
+        ctaLabel="Start a Project"
+        ctaHref="/contact"
       />
 
-      <Section className="bg-mist">
-        <Reveal>
-          <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-            What is included
-          </h2>
-        </Reveal>
-        <div className="mt-10">
-          <IncludedList items={included} />
-        </div>
-      </Section>
+      <SectionReveal style={transitionStyles[0]}>
+        <Section className="bg-mist">
+          <Reveal>
+            <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
+              What you get
+            </h2>
+          </Reveal>
+          <div className="mt-10">
+            <FeatureCards items={included} />
+          </div>
+        </Section>
+      </SectionReveal>
 
-      <Section>
-        <Reveal>
-          <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-            Who this is for
-          </h2>
-        </Reveal>
-        <RevealGroup className="mt-8 grid gap-6 text-base leading-7 text-navy/70 sm:grid-cols-3">
-          <RevealItem>
-            <p>
-              First time authors preparing for a launch and building an
-              online presence from scratch.
-            </p>
-          </RevealItem>
-          <RevealItem>
-            <p>
-              Authors with several books already out who want a stronger
-              website and a clearer promotion plan.
-            </p>
-          </RevealItem>
-          <RevealItem>
-            <p>
-              Independently published and traditionally published authors
-              alike. Our approach adjusts to how you publish.
-            </p>
-          </RevealItem>
-        </RevealGroup>
-      </Section>
-
-      <Section className="bg-mist">
-        <Reveal>
-          <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-            Where we promote your book
-          </h2>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-navy/70">
-            We meet readers where they already are, and we build systems you
-            can keep using long after our work together ends.
-          </p>
-        </Reveal>
-        <RevealGroup className="mt-10 grid gap-5 sm:grid-cols-2" role="list">
-          {channels.map((channel) => (
-            <RevealItem
-              key={channel}
-              role="listitem"
-              className="rounded-2xl border border-border-soft bg-white p-6 text-base leading-7 text-navy/80"
-            >
-              {channel}
+      <SectionReveal style={transitionStyles[1]}>
+        <Section>
+          <Reveal>
+            <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
+              Who this is for
+            </h2>
+          </Reveal>
+          <RevealGroup className="mt-8 grid gap-6 text-base leading-7 text-navy/70 sm:grid-cols-3">
+            <RevealItem>
+              <p>
+                First time authors preparing for a launch and building an
+                online presence from scratch.
+              </p>
             </RevealItem>
-          ))}
-        </RevealGroup>
-      </Section>
+            <RevealItem>
+              <p>
+                Authors with several books already out who want a stronger
+                website and a clearer promotion plan.
+              </p>
+            </RevealItem>
+            <RevealItem>
+              <p>
+                Independently published and traditionally published authors
+                alike. Our approach adjusts to how you publish.
+              </p>
+            </RevealItem>
+          </RevealGroup>
+        </Section>
+      </SectionReveal>
+
+      <SectionReveal style={transitionStyles[2]}>
+        <Section className="bg-mist">
+          <Reveal>
+            <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
+              Platforms
+            </h2>
+            <p className="mt-4 max-w-2xl text-base leading-7 text-navy/70">
+              We meet readers where they already are, and we build systems
+              you can keep using long after our work together ends.
+            </p>
+          </Reveal>
+          <RevealGroup className="mt-10 grid gap-5 sm:grid-cols-2" role="list">
+            {channels.map((channel) => (
+              <RevealItem
+                key={channel}
+                role="listitem"
+                className="rounded-2xl border border-border-soft bg-white p-6 text-base leading-7 text-navy/80"
+              >
+                {channel}
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </Section>
+      </SectionReveal>
 
       <Section>
         <Reveal>
           <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-            Our process
+            How it works
           </h2>
         </Reveal>
         <div className="mt-12">

@@ -120,6 +120,14 @@ export function ArrowRightIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function StarIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M12 2.5l2.9 6.16 6.6.75-4.9 4.6 1.3 6.6L12 17.6l-5.9 3.01 1.3-6.6-4.9-4.6 6.6-.75z" />
+    </svg>
+  );
+}
+
 export function SoundOnIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg

@@ -6,6 +6,7 @@ import HeroBackground from "@/components/HeroBackground";
 import ServiceVideoSection from "@/components/ServiceVideoSection";
 import MarqueeStrip from "@/components/MarqueeStrip";
 import StatsSection from "@/components/StatsSection";
+import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import { HeroReveal, HeroRevealItem } from "@/components/motion/HeroReveal";
 import Reveal, { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import SplitText from "@/components/motion/SplitText";
@@ -196,6 +197,21 @@ export default function Home() {
           <ProcessSteps steps={steps} />
         </div>
       </Section>
+
+      <section className="overflow-hidden bg-navy-dark py-20 sm:py-24">
+        <Reveal className="mx-auto max-w-2xl px-6 text-center sm:px-8">
+          <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+            What clients say
+          </h2>
+          <p className="mt-4 text-base leading-7 text-white/70">
+            Real testimonials are on their way as projects launch. Here is
+            the space we have built for them.
+          </p>
+        </Reveal>
+        <div className="mt-14">
+          <TestimonialsCarousel />
+        </div>
+      </section>
 
       <CTASection
         heading="Ready to get started?"

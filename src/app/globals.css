@@ -155,3 +155,20 @@ h3 {
 .marquee-group:hover .marquee-track {
   animation-direction: reverse;
 }
+
+@keyframes testimonial-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.testimonial-track {
+  animation: testimonial-scroll 42s linear infinite;
+}
+
+.testimonial-group:hover .testimonial-track {
+  animation-play-state: paused;
+}

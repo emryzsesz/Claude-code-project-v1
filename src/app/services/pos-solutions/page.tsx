@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import ServiceHero from "@/components/ServiceHero";
+import PageHero from "@/components/PageHero";
 import Section from "@/components/Section";
-import IncludedList from "@/components/IncludedList";
+import FeatureCards from "@/components/FeatureCards";
 import ComparePanel from "@/components/ComparePanel";
 import ProcessSteps from "@/components/ProcessSteps";
 import CTASection from "@/components/CTASection";
 import Reveal, { RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import SectionReveal, {
+  SectionTransitionStyle,
+} from "@/components/motion/SectionReveal";
 
 export const metadata: Metadata = {
   title: "POS Solutions on Toast and Square",
@@ -45,87 +48,99 @@ const steps = [
   },
 ];
 
+const transitionStyles: SectionTransitionStyle[] = ["wipe", "radial", "curtain"];
+
 export default function PosSolutionsPage() {
   return (
     <>
-      <ServiceHero
+      <PageHero
         eyebrow="POS Solutions"
         title="POS solutions on Toast and Square"
         description="Restaurants, cafes, retail shops, and service businesses trust Toast and Square to run their front counter. We set the system up right the first time, so you spend less time fighting technology and more time serving customers."
+        videoSrc="/video/pos-solutions.mp4"
+        posterSrc="/video/pos-solutions-poster.jpg"
+        ctaLabel="Start a Project"
+        ctaHref="/contact"
       />
 
-      <Section className="bg-mist">
-        <Reveal>
-          <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-            What is included
-          </h2>
-        </Reveal>
-        <div className="mt-10">
-          <IncludedList items={included} />
-        </div>
-      </Section>
+      <SectionReveal style={transitionStyles[0]}>
+        <Section className="bg-mist">
+          <Reveal>
+            <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
+              What you get
+            </h2>
+          </Reveal>
+          <div className="mt-10">
+            <FeatureCards items={included} />
+          </div>
+        </Section>
+      </SectionReveal>
+
+      <SectionReveal style={transitionStyles[1]}>
+        <Section>
+          <Reveal>
+            <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
+              Who this is for
+            </h2>
+          </Reveal>
+          <RevealGroup className="mt-8 grid gap-6 text-base leading-7 text-navy/70 sm:grid-cols-3">
+            <RevealItem>
+              <p>
+                New restaurants, cafes, and shops that need a POS system set
+                up before opening day.
+              </p>
+            </RevealItem>
+            <RevealItem>
+              <p>
+                Businesses switching providers and looking for a smoother
+                setup than they had before.
+              </p>
+            </RevealItem>
+            <RevealItem>
+              <p>
+                Businesses already using Toast or Square that are not
+                getting the full value from their current setup.
+              </p>
+            </RevealItem>
+          </RevealGroup>
+        </Section>
+      </SectionReveal>
+
+      <SectionReveal style={transitionStyles[2]}>
+        <Section className="bg-mist">
+          <Reveal>
+            <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
+              Platforms
+            </h2>
+            <p className="mt-4 max-w-2xl text-base leading-7 text-navy/70">
+              Both are strong systems, and we set up each one regularly.
+              Here is how we help you choose.
+            </p>
+          </Reveal>
+          <div className="mt-10">
+            <ComparePanel
+              columns={[
+                {
+                  name: "Toast",
+                  description:
+                    "Built specifically for restaurants. It handles complex menus, kitchen printing, and full table service with ease.",
+                },
+                {
+                  name: "Square",
+                  description:
+                    "Works well across restaurants, retail, and service businesses that want a simpler, flexible system.",
+                },
+              ]}
+              note="We will walk through how your business actually operates and recommend the platform that fits, not the one that is easiest to sell."
+            />
+          </div>
+        </Section>
+      </SectionReveal>
 
       <Section>
         <Reveal>
           <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-            Who this is for
-          </h2>
-        </Reveal>
-        <RevealGroup className="mt-8 grid gap-6 text-base leading-7 text-navy/70 sm:grid-cols-3">
-          <RevealItem>
-            <p>
-              New restaurants, cafes, and shops that need a POS system set up
-              before opening day.
-            </p>
-          </RevealItem>
-          <RevealItem>
-            <p>
-              Businesses switching providers and looking for a smoother setup
-              than they had before.
-            </p>
-          </RevealItem>
-          <RevealItem>
-            <p>
-              Businesses already using Toast or Square that are not getting
-              the full value from their current setup.
-            </p>
-          </RevealItem>
-        </RevealGroup>
-      </Section>
-
-      <Section className="bg-mist">
-        <Reveal>
-          <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-            Toast or Square
-          </h2>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-navy/70">
-            Both are strong systems, and we set up each one regularly. Here is
-            how we help you choose.
-          </p>
-        </Reveal>
-        <div className="mt-10">
-          <ComparePanel
-            columns={[
-              {
-                name: "Toast",
-                description:
-                  "Built specifically for restaurants. It handles complex menus, kitchen printing, and full table service with ease.",
-              },
-              {
-                name: "Square",
-                description:
-                  "Works well across restaurants, retail, and service businesses that want a simpler, flexible system.",
-              },
-            ]}
-            note="We will walk through how your business actually operates and recommend the platform that fits, not the one that is easiest to sell."
-          />
-        </div>
-      </Section>
-
-      <Section>
-        <Reveal>
-          <h2 className="text-3xl font-semibold text-navy sm:text-4xl">
-            Our process
+            How it works
           </h2>
         </Reveal>
         <div className="mt-12">
