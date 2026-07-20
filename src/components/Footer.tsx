@@ -7,7 +7,8 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-white/10 bg-navy">
+    <footer className="bg-navy">
+      <div aria-hidden="true" className="h-1 bg-green" />
       <Container className="pb-16 pt-20 text-center">
         <Reveal>
           <FooterLogo />
