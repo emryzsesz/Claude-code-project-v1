@@ -16,6 +16,7 @@ export type PortfolioProject = {
   client?: string;
   youtubeId?: string;
   url?: string;
+  hoverLabel?: string;
 };
 
 /**
@@ -65,6 +66,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     summary:
       "An online retailer selling hair extensions, closures, and accessories at wholesale pricing, with a catalog spanning bonnets, clip ins, glue, and HD closures in a full range of textures. We set up their Square account and built out the complete item library, organized into clear reporting categories with real pricing and live stock status for every product. The result is a catalog that is actually running, ready to sell and easy for their team to keep current.",
     image: "/images/portfolio/pos-1.jpg",
+    hoverLabel: "Square POS Setup",
   },
   {
     id: "author-1",

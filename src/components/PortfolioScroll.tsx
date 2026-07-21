@@ -28,6 +28,17 @@ function ExternalLinkBadge() {
   );
 }
 
+function HoverLabelBadge({ label }: { label: string }) {
+  return (
+    <span
+      aria-hidden="true"
+      className="absolute right-3 top-3 z-10 rounded-full bg-navy/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+    >
+      {label}
+    </span>
+  );
+}
+
 const categoryIcon: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
   Wix: GlobeIcon,
   Squarespace: GlobeIcon,
@@ -109,6 +120,9 @@ function ProjectCard({ project }: { project: PortfolioProject }) {
           <Icon className="h-10 w-10 text-white/70" />
         )}
         {project.url && <ExternalLinkBadge />}
+        {!project.url && !showVideo && project.hoverLabel && (
+          <HoverLabelBadge label={project.hoverLabel} />
+        )}
       </div>
       <div className="p-6">
         <p className="text-xs font-semibold uppercase tracking-wide text-green">
@@ -140,7 +154,7 @@ function ProjectCard({ project }: { project: PortfolioProject }) {
 
   return (
     <div
-      className={`h-full overflow-hidden rounded-2xl border border-border-soft bg-white ${showVideo ? CARD_GLOW_NESTED_LINK : ""}`}
+      className={`group h-full overflow-hidden rounded-2xl border border-border-soft bg-white ${showVideo ? CARD_GLOW_NESTED_LINK : project.hoverLabel ? CARD_GLOW : ""}`}
     >
       {cardBody}
     </div>
