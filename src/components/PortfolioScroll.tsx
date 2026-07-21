@@ -9,8 +9,24 @@ import {
 } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { PORTFOLIO_PROJECTS, PortfolioProject } from "@/lib/portfolio";
-import { GlobeIcon, PhoneIcon, BookIcon, PlayIcon } from "./icons";
+import { GlobeIcon, PhoneIcon, BookIcon, PlayIcon, ExternalLinkIcon } from "./icons";
 import { useIsCoarsePointer, useMotionTier } from "@/lib/useMotionTier";
+
+const CARD_GLOW =
+  "transition-all duration-200 hover:border-green/60 hover:shadow-[0_0_24px_-4px_rgba(84,126,38,0.45)]";
+const CARD_GLOW_NESTED_LINK =
+  "transition-all duration-200 has-[a:hover]:border-green/60 has-[a:hover]:shadow-[0_0_24px_-4px_rgba(84,126,38,0.45)]";
+
+function ExternalLinkBadge() {
+  return (
+    <span
+      aria-hidden="true"
+      className="absolute right-3 top-3 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-navy/70 text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+    >
+      <ExternalLinkIcon className="h-3.5 w-3.5" />
+    </span>
+  );
+}
 
 const categoryIcon: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
   Wix: GlobeIcon,
@@ -62,6 +78,7 @@ function VideoThumb({ project }: { project: PortfolioProject }) {
           <PlayIcon className="ml-0.5 h-5 w-5" />
         </span>
       </div>
+      <ExternalLinkBadge />
     </a>
   );
 }
@@ -72,8 +89,8 @@ function ProjectCard({ project }: { project: PortfolioProject }) {
   const showImage = Boolean(project.image) && !imageFailed;
   const showVideo = Boolean(project.youtubeId);
 
-  return (
-    <div className="h-full overflow-hidden rounded-2xl border border-border-soft bg-white">
+  const cardBody = (
+    <>
       <div
         className={`relative flex h-40 items-center justify-center bg-gradient-to-br ${categoryTint[project.category]}`}
       >
@@ -91,6 +108,7 @@ function ProjectCard({ project }: { project: PortfolioProject }) {
         ) : (
           <Icon className="h-10 w-10 text-white/70" />
         )}
+        {project.url && <ExternalLinkBadge />}
       </div>
       <div className="p-6">
         <p className="text-xs font-semibold uppercase tracking-wide text-green">
@@ -102,6 +120,29 @@ function ProjectCard({ project }: { project: PortfolioProject }) {
         )}
         <p className="mt-2 text-sm leading-6 text-navy/70">{project.summary}</p>
       </div>
+    </>
+  );
+
+  if (project.url) {
+    return (
+      <a
+        href={project.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Visit the live ${project.title} website`}
+        data-cursor-label="view"
+        className={`group block h-full overflow-hidden rounded-2xl border border-border-soft bg-white ${CARD_GLOW}`}
+      >
+        {cardBody}
+      </a>
+    );
+  }
+
+  return (
+    <div
+      className={`h-full overflow-hidden rounded-2xl border border-border-soft bg-white ${showVideo ? CARD_GLOW_NESTED_LINK : ""}`}
+    >
+      {cardBody}
     </div>
   );
 }

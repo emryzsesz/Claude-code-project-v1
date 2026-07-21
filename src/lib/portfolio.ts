@@ -15,6 +15,7 @@ export type PortfolioProject = {
   image?: string;
   client?: string;
   youtubeId?: string;
+  url?: string;
 };
 
 /**
@@ -28,6 +29,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     summary:
       "A company that helps homeowners, heirs, and estate representatives recover unclaimed surplus funds after a foreclosure or tax sale. We built a full Wix site that explains the recovery process in plain language, walks visitors through eligibility, and backs every claim with trust signals and an FAQ. The result is a clear path from a visitor asking if they are owed money to a submitted eligibility check.",
     image: "/images/portfolio/wix-1.jpg",
+    url: "https://www.proceedssolution.com/",
   },
   {
     id: "wix-2",
@@ -36,6 +38,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     summary:
       "A nonprofit software company behind three connected products, aKinder Volunteer, aKinder Wellness, and aKinder Chat, each aimed at strengthening community health and volunteer engagement. We built a Wix Studio site that introduces all three products clearly, backs the mission with a founder quote, and gives nonprofits an easy path to request a demo. The result is a site that turns a broad mission into three understandable offers nonprofits can act on.",
     image: "/images/portfolio/wix-2.jpg",
+    url: "https://xiomaramio.wixstudio.com/legacyresponse",
   },
   {
     id: "squarespace-1",
@@ -44,6 +47,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     summary:
       "A web design agency that builds Squarespace sites for service based experts like financial advisors and wellness practices. We built their own Squarespace site around a clear growth promise, real client logos, a free guide download, and a nationwide client list. The result is a site that sells the agency the same way it sells its client work, with clear proof and a steady stream of guide downloads and booked calls.",
     image: "/images/portfolio/squarespace-1.jpg",
+    url: "https://knapsackcreative.com/",
   },
   {
     id: "squarespace-2",
@@ -52,6 +56,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     summary:
       "A VIP theme park tour company guiding families through Disney, Universal, and Epic Universe parks across Florida and California. We built a vibrant Squarespace site with a free trip planning call, real guest testimonials, and a results strip showing over 500 VIP tours delivered a year, a 98 percent satisfaction rate, and over 200 reviews. The result is a site that turns a big, once in a lifetime trip decision into an easy booked call.",
     image: "/images/portfolio/squarespace-2.jpg",
+    url: "https://www.thetourpals.com/",
   },
   {
     id: "pos-1",
