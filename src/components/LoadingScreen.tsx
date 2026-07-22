@@ -9,7 +9,7 @@ import {
   LOGO_SQUARES,
 } from "./LogoMark";
 
-const NAVY = "#0f2d4c";
+const WHITE = "#ffffff";
 const GREEN = "#547e26";
 const LIME = "#769a38";
 const squareFill: Record<string, string> = { green: GREEN, lime: LIME };
@@ -100,12 +100,19 @@ export default function LoadingScreen() {
             initial="hidden"
             animate="show"
           >
+            {/*
+              Loading screen only recolor: the navy polygons render white so
+              the E reads against this same navy background, same fix as the
+              footer instance. Same traced geometry as LogoMark either way,
+              header and footer are untouched since they do not import from
+              here.
+            */}
             {LOGO_NAVY_POLYGONS.map((points) => (
               <motion.polygon
                 key={points}
                 points={points}
-                fill={NAVY}
-                stroke={NAVY}
+                fill={WHITE}
+                stroke={WHITE}
                 strokeWidth={3}
                 variants={shapeVariants}
                 custom={0}
